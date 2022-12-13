@@ -1,0 +1,79 @@
+.App {
+  text-align: center;
+  font-family:'Courier New', Courier, monospace;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-image: url('./binarycash.png');
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: black;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+h1 {
+  background-color: aliceblue;
+  max-width: 600px;
+}
+h2 {
+  background-color: aliceblue;
+  max-width: 600px;
+  font-size: 20px;
+}
+p {
+  background-color: aliceblue;
+  max-width: 600px; 
+  font-size: 18px;
+}
+#SWIFT1 {
+text-align: left;
+}
+
+.form1 {
+  background-color: aliceblue;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.nav {
+  background-color: greenyellow;
+  display:inline-block;
+  list-style-type: none;
+  border-color:green;
+}
+
+#nav2 {
+  background-color: blanchedalmond;
+}
+
+.Reconciler {margin:0px;
+padding:0px;
+background-color: beige;}
+
+input {margin:0px;
+  padding:0px;}
