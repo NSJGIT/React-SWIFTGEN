@@ -1,18 +1,20 @@
+import altSplice from "./altSplice";
 import {Component} from "react";
 class Reconciler extends Component {
-    state= { one: "",
-            two: "",
-            three: "",
-            four: "",
-            five: "",
-            six: "",
-            one1: "",
-            two1: "",
-            three1: "",
-            four1: "",
-            five1: "",
-            six1: "",
+    state= { one: 1,
+            two: 1,
+            three: 1,
+            four: 1,
+            five: 1,
+            six: 1,
+            one1: 1,
+            two1: 1,
+            three1: 1,
+            four1: 1,
+            five1: 1,
+            six1: 1,
         };
+
     handle1=(event)=>{this.setState({
         one: event.target.value,
     })};
@@ -77,29 +79,45 @@ class Reconciler extends Component {
         ); 
         //console.log(this.state);
         let arr1 = arr0.slice(0, 6); //split array in 2
+        arr1=Array.from(arr1); //splice doesn't work on sets, so you need to convert to an array
         let arr2 = arr0.slice(6);
+        arr2=Array.from(arr2);
         //console.log(arr1[5][0][1]); //verifying array is split in 2
         //console.log(arr2[5][0]);
         //console.log('test'); //checking that on click submit is working
         let arrRec=[];
+        let arrDiff=[];
+        //let arrDiffTest=arr1[5][0][1]-arr2[5][0][1];//test for one array operation
+        //arrDiffTest=Array.from(arrDiffTest);
+        //arrDiffTest=altSplice(arrDiffTest);
+        //console.log(arrDiffTest);
+        console.log(altSplice(arr1,3));
         //todo: outermost loop should end when no more pairs can be pulled from the two arrays, end condition is abstract...
-        for (let j=0; j<1000;j++){
+        for (let j=0; j<100;j++){
         let exit_loops=false;
-        let arrLength=arr1.length;
-        
-        for (let i=0; i<arrLength; i++) {
-            for (let n=0; i<arrLength; n++) {
-                if ((arr1[i][0][1]-arr2[n][0][1])<0.1) {
-                    arrRec.push(arr1[i][0][1]);
-                    arr1.splice(i,1);
-                    arr2.splice(n,1);
+        let arrLength=arr1.length;//arrLength=arr1.length, when array length is zero it works? it's obviously a looping problem
+        //if (arrLength===2) {break;}
+        //console.log(j);
+        //(let i=0; i<arrLength; i++)
+        for (let i=arrLength; i>0; i--) {
+            
+            for (let n=arrLength; n>0; n--) {
+                arrDiff=arr1[i][0][1]-arr2[n][0][1];
+                arrDiff=Array.from(arrDiff); //let arrDiff=arr1[i][0][1]-arr2[n][0][1];
+                if (arrDiff<0.1) {
+                    arrRec=Array.from(arrRec);
+                    arrRec.push(arr1[n][0][1]); //arrRec.push(arr1[i][0][1])
+                    arr1=altSplice(arr1,i); //splice doesn't work, need to use custom function
+                    arr2=altSplice(arr2,n);
                     exit_loops = true;
                     break;
                 }
                 if (exit_loops===true) {break;}
             }}}
             
-            console.log(arrRec);
+            //console.log('reconciled:'+arrRec);
+            console.log('breaks1:'+arr1);
+            console.log('breaks2:'+arr2);
     }
 
     render () {
